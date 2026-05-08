@@ -1,0 +1,28 @@
+[1]	张阳, 司光亚, 王艳正. 无人集群作战建模与仿真综述[J]. 电子信息对抗技术, 2018, 33(3): 30-36.
+[2]	邹立岩, 张明智, 柏俊汝, 等. 无人机集群作战建模与仿真研究综述[J]. 战术导弹技术, 2021(3): 98-108.
+[3]	Ma Y Y, Wang G Q, Hu X X, et al. Cooperative occupancy decision making of multi-UAV in beyond-visual-range air combat: A game theory approach[J]. IEEE Access, 2020, 8: 11624-11634.
+[4]	Zhen Z, Xing D, Gao C. Cooperative search-attack mission planning for multi-UAV based on intelligent self-organized algorithm[J]. Aerospace Science and Technology, 2018, 76: 402-411.
+[5]	Zhong Y, Yao P, Sun Y, et al. Cooperative task allocation method of MCAV/UCAV formation[J]. Mathematical Problems in Engineering, 2016: 6051046.
+[6]	Wang X F, Zhao H, Han T, et al. A Gaussian estimation of distribution algorithm with random walk strategies and its application in optimal missile guidance handover for multi-UCAV in over-the-horizon air combat[J]. IEEE Access, 2019, 7: 43298-43317.
+[7]	Chen Y B, Luo G C, Mei Y S, et al. UAV path planning using artificial potential field method updated by optimal control theory[J]. International Journal of Systems Science, 2016, 47(6): 1407-1420.
+[8]	Roberge V, Tarbouchi M, Labonté G. Fast genetic algorithm path planner for fixed-wing military UAV using GPU[J]. IEEE Transactions on Aerospace and Electronic Systems, 2018, 54(5): 2105-2117.
+[9]	杨松, 王维平, 李小波, 等. 无人集群体系设计与仿真评估方法[J]. 国防科技大学学报, 2024, 46(3): 126-136.
+[10] 石治国, 徐凯平, 弓欣, 等. 基于元作战域的无人集群自主协同能力验证研究[J]. 兵器装备工程学报, 2024, 45(7): 38-43, 49.
+[11]	Jia L P, Qiao E J, Wang L D, et al. A multi-agent based simulation modeling method for UAV swarm collaborative combat[C]//2024 39th Youth Academic Annual Conference of Chinese Association of Automation. 2024: 1061-1066.
+[12]	Phadke A, Medrano F A, Sekharan C N, et al. Designing UAV swarm experiments: A simulator selection and experiment design process[J]. Sensors, 2023, 23(17): 7359.
+[13]	Shah S, Dey D, Lovett C, et al. AirSim: High-fidelity visual and physical simulation for autonomous vehicles[C]//Proceedings of the 11th Conference on Field and Service Robotics. Zurich: Springer, 2017.
+[14]	Rohmer E, Singh S P N, Freese M. CoppeliaSim (formerly V-REP): A versatile and scalable robot simulation framework[C]//Proceedings of the IEEE/RSJ International Conference on Intelligent Robots and Systems. Tokyo: IEEE, 2013: 1321-1326.
+[15]	Pinciroli C, Trianni V, O'Grady R, et al. ARGoS: A modular, parallel, multi-engine simulator for multi-robot systems[J]. Swarm Intelligence, 2012, 6: 271-295.
+[16]	Lowe R, Wu Y, Tamar A, et al. Multi-agent actor-critic for mixed cooperative-competitive environments[C]//Advances in Neural Information Processing Systems. 2017, 30.
+[17]	Schulman J, Wolski F, Dhariwal P, et al. Proximal policy optimization algorithms[J]. arXiv preprint arXiv:1707.06347, 2017.
+[18]	Yu C, Velu A, Vinitsky E, et al. The surprising effectiveness of PPO in cooperative multi-agent games[J]. arXiv preprint arXiv:2103.01955, 2021.
+[19]	Samvelyan M, Rashid T, de Witt C S, et al. The StarCraft Multi-Agent Challenge[J]. arXiv preprint arXiv:1902.04043, 2019.
+[20]	刘双成, 李思民, 李海南, 等. 面向无人机群多智能体强化学习的对抗仿真平台与攻防验证[J]. 网络空间安全科学学报, 2023, 1(2): 93-111.
+[21]	Garijo F J, Boman M. Multi-agent system engineering[C]//Proceedings of the 9th European Workshop on Modelling Autonomous Agents in a Multi-Agent World. Valencia, 1999: 52-62.
+[22]	Sutton R S, Barto A G. Reinforcement learning: An introduction[M]. 2nd ed. Cambridge: MIT Press, 2018.
+[23]	Lillicrap T P, Hunt J J, Pritzel A, et al. Continuous control with deep reinforcement learning[J]. arXiv preprint arXiv:1509.02971, 2015.
+[24]	Rashid T, Samvelyan M, de Witt C S, et al. Monotonic value function factorisation for deep multi-agent reinforcement learning[J]. Journal of Machine Learning Research, 2020, 21(178): 1-51.
+[25]	Vinyals O, Babuschkin I, Czarnecki W M, et al. Grandmaster level in StarCraft II using multi-agent reinforcement learning[J]. Nature, 2019, 575(7782): 350-354.
+[26]	KUBA J G, MUNOS DE COTE E, PENG B, et al. Trust region policy optimisation in multi-agent reinforcement learning[C]// International Conference on Learning Representations. 2022.
+[27]	KUBA J G, PENG B, WEN X, et al. Heterogeneous-agent reinforcement learning[J]. arXiv preprint arXiv:2110.01439, 2021.
+[28]	XU Z, CHEN J, LIU Z, et al. HARL: a benchmark for heterogeneous-agent reinforcement learning[J]. arXiv preprint arXiv:2304.14324, 2023.

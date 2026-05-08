@@ -97,6 +97,11 @@ class SC2MultiAgentEnv(MultiAgentEnv):
         self.last_battle_info = {"self_combat": 0, "enemy_combat": 0, "battle_winner": "ongoing"}
         self._seen_self_combat = False
         self._seen_enemy_combat = False
+        self._episode_steps = 0
+        # 防止单位短暂“消失/未同步”导致误判终局：
+        # 需要连续若干步保持同一胜负结果才真正结束。
+        self._terminal_streak = 0
+        self._terminal_required_streak = 3
         self.obs_size = int(obs_size)
         self.state_size = 128
         self.n_actions = 5
@@ -121,8 +126,14 @@ class SC2MultiAgentEnv(MultiAgentEnv):
         ]
 
     def _battle_status(self, obs) -> Dict[str, Any]:
+        # 终局判定采用“宽口径”单位统计，避免因目标筛选过滤导致提前结束。
         self_combat = len(self._ordered_self_units(obs))
-        enemy_combat = len(self._effective_enemy_units(obs))
+        enemy_units_for_terminal = [
+            u for u in self._enemy_units(obs)
+            if int(u.unit_type) not in WORKER_TYPES
+            and int(u.unit_type) not in STRUCTURE_TYPES
+        ]
+        enemy_combat = len(enemy_units_for_terminal)
 
         if self_combat > 0:
             self._seen_self_combat = True
@@ -160,6 +171,8 @@ class SC2MultiAgentEnv(MultiAgentEnv):
         self._update_agent_count(timestep)
         self._seen_self_combat = False
         self._seen_enemy_combat = False
+        self._terminal_streak = 0
+        self._episode_steps = 0
         self.last_battle_info = self._battle_status(timestep[0].observation)
         return self._extract_observations(timestep)
 
@@ -169,6 +182,7 @@ class SC2MultiAgentEnv(MultiAgentEnv):
         # 我们只有1个受控玩家，因此需要把多单位动作打包成外层长度为1的列表。
         timestep = self.sc2_env.step([sc2_actions])
         self.last_timestep = timestep
+        self._episode_steps += 1
         self.last_battle_info = self._battle_status(timestep[0].observation)
         return self._extract_observations(timestep), self._extract_rewards(timestep), self._extract_dones(timestep), self._extract_info(timestep)
 
@@ -230,13 +244,30 @@ class SC2MultiAgentEnv(MultiAgentEnv):
         return {str(i): reward for i in range(self.n_agents)}
 
     def _extract_dones(self, timestep) -> Dict[str, bool]:
-        battle_done = self.last_battle_info.get("battle_winner", "ongoing") != "ongoing"
-        done = bool(timestep[0].last()) or battle_done
+        winner = self.last_battle_info.get("battle_winner", "ongoing")
+        battle_done = winner != "ongoing"
+
+        # 开局缓冲：前若干步不接受战斗终局，避免开场同步抖动触发提前结束。
+        warmup_steps = 32
+
+        # 过滤瞬时误判：仅当终局信号连续出现若干step才结束。
+        if self._episode_steps >= warmup_steps and battle_done:
+            self._terminal_streak += 1
+        elif battle_done:
+            self._terminal_streak = 0
+        else:
+            self._terminal_streak = 0
+
+        stable_battle_done = self._terminal_streak >= self._terminal_required_streak
+        done = bool(timestep[0].last()) or stable_battle_done
         return {str(i): done for i in range(self.n_agents)}
 
     def _extract_info(self, timestep) -> Dict[str, Any]:
         info = {"timestep": timestep[0]}
         info.update(self.last_battle_info)
+        info["episode_steps"] = int(self._episode_steps)
+        info["terminal_streak"] = int(self._terminal_streak)
+        info["terminal_required_streak"] = int(self._terminal_required_streak)
         return info
 
     def _convert_actions(self, actions_dict: Dict[str, np.ndarray]) -> List[actions.FunctionCall]:
