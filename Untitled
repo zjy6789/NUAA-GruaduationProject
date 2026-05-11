@@ -1,7 +1,0 @@
-指标类型	日志标签	GUI 显示位置	作用
-训练平均奖励	TRAIN_METRIC	训练/评估数据区	观察训练趋势
-训练平均胜率	TRAIN_METRIC	训练/评估数据区	观察对局结果
-评估平均奖励	EVAL_METRIC	训练/评估数据区	比较不同模型表现
-评估胜率	EVAL_METRIC	训练/评估数据区	判断策略是否有效
-评估步长	EVAL_METRIC	训练/评估数据区	观察对局持续时长
-对战结果	EVAL_BATTLE	训练/评估数据区	适用于 simplebattle 自博弈
